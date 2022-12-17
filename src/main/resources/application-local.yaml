@@ -1,0 +1,20 @@
+server:
+  port: 9080
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: token
+          uri: http://localhost:18080
+          predicates:
+            - Path=/token
+          filters:
+            - SetPath=/auth/realms/space-ships/protocol/openid-connect/token
+        - id: aliases
+          uri: http://localhost:9082
+          predicates:
+            - Path=/aliases
+        - id: exchange
+          uri: http://localhost:9081
+          predicates:
+            - Path=/exchange

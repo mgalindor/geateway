@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: aliases
+          uri: http://sword:9082
+          predicates:
+            - Path=/aliases
+        - id: exchange
+          uri: http://eva:9080
+          predicates:
+            - Path=/exchange
